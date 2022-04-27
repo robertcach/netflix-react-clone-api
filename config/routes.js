@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const upload = require("./storage.config")
+
 const authMiddleware = require("../middlewares/auth.middleware")
 const usersController = require("../controllers/users.controller");
 const moviesController = require("../controllers/movies.controller")
@@ -20,7 +22,7 @@ router.get("/users/:id", usersController.getUserById);
 
 
 /* Movies */
-router.post("/movie/new", moviesController.create);
+router.post("/movie/new", upload.single('image'), moviesController.create);
 router.get("/movie/:id", moviesController.detail);
 router.patch("/movie/:id", moviesController.update);
 router.delete("/movie/:id", moviesController.delete)

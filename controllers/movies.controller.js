@@ -2,6 +2,11 @@ const Movie = require("../models/Movie.model.js")
 
 module.exports.create = (req, res, next) => {
   const movie = { title, description, user } = req.body
+  console.log(movie)
+
+  if (req.file) {
+    movie.image = req.file.path
+  }
 
   Movie.create(movie)
     .then(movie => res.status(200).json(movie))
