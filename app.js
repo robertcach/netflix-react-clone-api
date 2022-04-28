@@ -17,6 +17,7 @@ app.use(express.json())
 app.use(logger("dev"))
 
 
+
 /* Routes */
 const routes = require("./config/routes");
 app.use("/", routes);
