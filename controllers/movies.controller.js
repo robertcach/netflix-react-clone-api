@@ -20,7 +20,13 @@ module.exports.detail = (req, res, next) => {
 }
 
 module.exports.update = (req, res, next) => {
-  Movie.findByIdAndUpdate(req.params.id, req.body, { new: true })
+  let updatedMovie = { content } = req.body
+
+  if (req.file) {
+    updatedMovie.image = req.file.path
+  }
+
+  Movie.findByIdAndUpdate(req.params.id, updatedMovie, { new: true })
     .then(movie => res.status(200).json(movie))
     .catch(next)
 }

@@ -24,7 +24,7 @@ router.get("/users/:id", usersController.getUserById);
 /* Movies */
 router.post("/movie/new", upload.single('image'), moviesController.create);
 router.get("/movie/:id", moviesController.detail);
-router.patch("/movie/:id", moviesController.update);
+router.patch("/movie/:id", upload.single('image'), moviesController.update);
 router.delete("/movie/:id", moviesController.delete)
 
 module.exports = router
